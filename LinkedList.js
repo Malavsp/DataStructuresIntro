@@ -23,6 +23,10 @@ class LinkedList {
   }
 
   insertAt(data, index) {
+    if (index < 0 || index > this.length()) {
+      return null;
+    }
+
     const newNode = new Node(data);
     let currentNum = 0;
     let currentNode = this.head;
@@ -40,6 +44,17 @@ class LinkedList {
       currentNode = nextNode;
       currentNum++;
     }
+  }
+
+  length() {
+    let count = 0;
+    let currentNode = this.head;
+    while (currentNode.next != null) {
+      const nextNode = currentNode.next;
+      currentNode = nextNode;
+      count++;
+    }
+    return count;
   }
 }
 
@@ -60,4 +75,6 @@ linkedList1.append("1");
 linkedList1.append("3");
 linkedList1.insertAt("2", 2);
 linkedList1.append("4");
-console.log(linkedList1.head.next.next);
+linkedList1.insertAt("5", 5); // will not insert
+// console.log(linkedList1.head.next.next);
+// console.log(linkedList1.length());
